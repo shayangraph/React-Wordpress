@@ -17,11 +17,10 @@ const MainLayout = ({ children }) => {
         >
           <Menu.Item key="1">صفحه اصلی</Menu.Item>
           <Menu.Item key="2">لیست پست ها</Menu.Item>
-          
-            <Button className="login-btn" color="primary" type="submit">
-              صفحه ورود
-            </Button>
-          
+
+          <Button className="login-btn" color="primary" type="submit">
+            صفحه ورود
+          </Button>
         </Menu>
       </Header>
       <Content style={{ padding: "0 50px" }}>
@@ -32,9 +31,7 @@ const MainLayout = ({ children }) => {
         </Breadcrumb>
         <div className="site-layout-content text-right">{children}</div>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        @ساخته شده توسط Sm.S1382
-      </Footer>
+      <Footer style={{ textAlign: "center" }}>ساخته شده توسط شایان</Footer>
     </Layout>
   );
 };

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import MainLayout from "../Layout/mainLayout";
-import { Row, Col } from "reactstrap";
-import { Card } from "antd";
+import { Row, Col, Card, CardImg, CardBody } from "reactstrap";
+import { Divider, Typography } from "antd";
 import axios from "axios";
 import clientConfig from "../../clientConfig";
-import renderHTML from "react-render-html"
-const { Meta } = Card;
+import renderHTML from "react-render-html";
+const { Paragraph } = Typography;
+
 const Posts = () => {
   const [data, setData] = useState([]);
 
@@ -23,15 +24,13 @@ const Posts = () => {
         {data.map((post) => {
           return (
             <Col sm={12} xs={12} md={6} xl={3} lg={4}>
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<img alt="example" src="" />}
-              >
-                <Meta
-                  title={post.title.rendered}
-                  description={renderHTML(post.content.rendered)}
-                />
+              <Card>
+                <CardImg />
+                <CardBody>
+                  {post.title.rendered}
+                  <Divider />
+                  {renderHTML(post.content.rendered)}
+                </CardBody>
               </Card>
             </Col>
           );
