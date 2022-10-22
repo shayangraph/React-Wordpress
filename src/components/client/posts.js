@@ -3,6 +3,7 @@ import MainLayout from "../Layout/mainLayout";
 import { Row, Col, Card, CardImg, CardBody } from "reactstrap";
 import { Divider, Typography } from "antd";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import clientConfig from "../../clientConfig";
 import renderHTML from "react-render-html";
 const { Paragraph } = Typography;
@@ -24,17 +25,19 @@ const Posts = () => {
           return (
             <Col className="mb-2" sm={12} xs={12} md={6} xl={3} lg={4}>
               <Card>
-                <CardImg
-                  alt={post.title.rendered}
-                  className="posts-img"
-                  src={
-                    post.uagb_featured_image_src.medium[0]
-                      ? post.uagb_featured_image_src.medium[0]
-                      : "assets/img_not_found.png"
-                  }
-                  width="100%"
-                  height="200px"
-                />
+                <Link to={`/${post.id}`}>
+                  <CardImg
+                    alt={post.title.rendered}
+                    className="posts-img"
+                    src={
+                      post.uagb_featured_image_src.medium[0]
+                        ? post.uagb_featured_image_src.medium[0]
+                        : "assets/img_not_found.png"
+                    }
+                    width="100%"
+                    height="200px"
+                  />
+                </Link>
                 <CardBody>
                   {post.title.rendered}
                   <Divider />

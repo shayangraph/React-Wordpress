@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/App.css';
-import Posts from './client/posts';
+import Posts from './client/Posts';
 
-function App() {
+function Main() {
   return (
     <div className="App">
       <Posts />
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;
