@@ -1,8 +1,12 @@
-.login-btn{
-    position: absolute;
-    left: 50px;
-    top: 10px;
+.login-btn {
+  position: absolute;
+  left: 50px;
+  top: 10px;
 }
-.post-img{
-    background-repeat: no-repeat;
+.post-img {
+  background-repeat: no-repeat;
+}
+.login-input {
+  width: 300px;
+  margin-bottom: 25px;
 }

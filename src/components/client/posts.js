@@ -19,7 +19,7 @@ const Posts = () => {
     .catch((err) => console.error(err, "is error!"));
 
   return (
-    <MainLayout>
+    <MainLayout activePage="main">
       <Row>
         {data.map((post) => {
           return (
