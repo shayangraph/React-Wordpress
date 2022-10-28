@@ -1,24 +1,35 @@
 import React, { useState } from "react";
 import MainLayout from "../Layout/mainLayout";
 import { Row, Col, Card, CardImg, CardBody } from "reactstrap";
-import { Divider, Typography } from "antd";
+import { Typography, Divider } from "antd";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import clientConfig from "../../clientConfig";
 import renderHTML from "react-render-html";
+import { Link } from "react-router-dom";
+import Loader from "../../loader.gif";
+import { useSelector, useDispatch } from "react-redux";
+import { change_loader } from "../../redux/actions";
+
 const { Paragraph } = Typography;
 
 const Posts = () => {
+  const loader = useSelector((state) => state.loader);
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
 
   axios
     .get(`${clientConfig.siteUrl}/wp-json/wp/v2/posts`)
     .then((res) => {
       setData(res.data);
+      dispatch(change_loader(true));
+      // console.log(res.data, "is response");
     })
     .catch((err) => console.error(err, "is error!"));
-
-  return (
+  // console.log(data);
+  // console.log(data);
+  return loader === false ? (
+    <img className="loader" src={Loader} alt="درحال بارگذاری ..." />
+  ) : (
     <MainLayout activePage="main">
       <Row>
         {data.map((post) => {
@@ -42,15 +53,15 @@ const Posts = () => {
                   {post.title.rendered}
                   <Divider />
                   <Paragraph
-                    ellipsis={{
-                      rows: 2,
-                      expandable: false,
-                      symbol: "ادامه مطلب",
-                    }}
+                    ellipsis={{ rows: 2, expandable: false }}
+                    title="..."
                   >
-                    <p>{renderHTML(post.content.rendered)}</p>
+                    <div>{renderHTML(post.content.rendered)}</div>
                   </Paragraph>
-                  <span>ادامه مطلب...</span>
+                  <Link to={`/${post.id}`}>
+                    <span>... ادامه مطلب</span>
+                  </Link>
+                  <Divider />
                 </CardBody>
               </Card>
             </Col>

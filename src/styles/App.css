@@ -10,3 +10,10 @@
   width: 300px;
   margin-bottom: 25px;
 }
+.loader {
+  position: relative;
+  width: 20%;
+  height: 20%;
+  left: 40%;
+  margin-top: 200px;
+}
