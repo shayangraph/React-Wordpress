@@ -1,11 +1,18 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb, Avatar } from "antd";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import { check_login } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const { Header, Content, Footer } = Layout;
+const randomColor = Math.floor(Math.random() * 1000000);
 
 const MainLayout = (props) => {
+  const login = useSelector((state) => state.login);
+  const role = useSelector((state) => state.role);
+  const dispatch = useDispatch();
+
   return (
     <Layout className="layout">
       <Header>
@@ -22,11 +29,24 @@ const MainLayout = (props) => {
           <Menu.Item key="postsList">
             <Link to="#">لیست پست ها</Link>
           </Menu.Item>
-          <Link to="/login">
-            <Button className="login-btn" color="primary" type="submit">
-              صفحه ورود
-            </Button>
-          </Link>
+          {login ? (
+            <Avatar
+              className="login-avatar"
+              size={46}
+              style={{
+                backgroundColor: `#${randomColor}`,
+                color: randomColor === "#000000" ? "black" : "white",
+              }}
+            >
+              {role}
+            </Avatar>
+          ) : (
+            <Link to="/login">
+              <Button className="login-btn" color="primary" type="submit">
+                صفحه ورود
+              </Button>
+            </Link>
+          )}
         </Menu>
       </Header>
       <Content style={{ padding: "0 50px" }}>

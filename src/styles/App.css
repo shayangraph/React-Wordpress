@@ -17,3 +17,8 @@
   left: 40%;
   margin-top: 200px;
 }
+.login-avatar {
+  position: absolute;
+  left: 50px;
+  top: 10px;
+}

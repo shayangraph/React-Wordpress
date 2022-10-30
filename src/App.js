@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import clientConfig from "./clientConfig";
+import Dashboard from "./components/admin/Dashboard";
 import Login from "./components/client/Login";
 import Post from "./components/client/Post";
 import Main from "./components/Main";
@@ -29,11 +30,13 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route path="/login" component={Login} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route
             path="/:id"
             render={(routerProps) => renderPosts(routerProps)}
           />
           <Route exact path="/" component={Main} />
+          <Redirect to="/"/>
         </Switch>
       </HashRouter>
     );
